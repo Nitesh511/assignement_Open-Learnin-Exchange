@@ -50,7 +50,7 @@ const LoginForm = () => {
     try {
       await login(values);
       dispatch(setLoginState(values));
-      navigate("/");
+      navigate("/admin-dash");
     } catch (error) {
       console.error("Login failed:", error);
       navigate("/login");

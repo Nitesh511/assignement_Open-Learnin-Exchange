@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import logo from "../../../assets/logo.png";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <nav className="bg-white  border-gray-200">
@@ -29,45 +30,65 @@ const Navbar = () => {
           </Link>
           <div className="hidden lg:flex lg:items-center lg:space-x-8">
             <ul className="flex space-x-6">
-              <li>
-                <a
-                  href="#"
-                  className="navbar-text text-gray-900 hover:text-blue-700 transition"
+              <li className="drop-shadow-md">
+                <Link
+                  to="/"
+                  className={`navbar-text ${
+                    location.pathname === "/"
+                      ? "text-blue-600 font-semibold"
+                      : "text-gray-900"
+                  } hover:text-blue-700 transition`}
                 >
                   Home
-                </a>
+                </Link>
               </li>
-              <li>
-                <a
-                  href="#"
-                  className="navbar-text text-gray-900 hover:text-blue-700 transition"
+              <li className="drop-shadow-md">
+                <Link
+                  to="/about"
+                  className={`navbar-text ${
+                    location.pathname === "/about"
+                      ? "text-blue-600 font-semibold"
+                      : "text-gray-900"
+                  } hover:text-blue-700 transition`}
                 >
-                  About
-                </a>
+                  About us
+                </Link>
               </li>
-              <li>
-                <a
-                  href="#"
-                  className="navbar-text text-gray-900 hover:text-blue-700 transition"
+              <li className="drop-shadow-md">
+                <Link
+                  to="/services"
+                  className={`navbar-text ${
+                    location.pathname === "/services"
+                      ? "text-blue-600 font-semibold"
+                      : "text-gray-900"
+                  } hover:text-blue-700 transition`}
                 >
                   Services
-                </a>
+                </Link>
               </li>
-              <li>
-                <a
-                  href="#"
-                  className="navbar-text text-gray-900 hover:text-blue-700 transition"
+              <li className="drop-shadow-md">
+                <Link
+                  to="/news"
+                  className={`navbar-text ${
+                    location.pathname === "/news"
+                      ? "text-blue-600 font-semibold"
+                      : "text-gray-900"
+                  } hover:text-blue-700 transition`}
                 >
-                  Pricing
-                </a>
+                  News
+                </Link>
               </li>
-              <li>
-                <a
-                  href="#"
-                  className="navbar-text text-gray-900 hover:text-blue-700 transition"
+              <li className="drop-shadow-md">
+                <Link
+                  to="/contact"
+                  className={`navbar-text ${
+                    location.pathname === "/contact"
+                      ? "text-blue-600 font-semibold"
+                      : "text-gray-900"
+                  } hover:text-blue-700 transition`}
                 >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
             <a
@@ -78,7 +99,7 @@ const Navbar = () => {
             </a>
           </div>
 
-       <div className="lg:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
@@ -120,7 +141,7 @@ const Navbar = () => {
                 className="navbar-text block text-gray-900 hover:text-blue-700 transition text-2xl font-medium"
                 onClick={() => setIsOpen(false)}
               >
-                About
+                About us
               </a>
             </li>
             <li>
@@ -138,7 +159,7 @@ const Navbar = () => {
                 className="navbar-text block text-gray-900 hover:text-blue-700 transition text-2xl font-medium"
                 onClick={() => setIsOpen(false)}
               >
-                Pricing
+                News
               </a>
             </li>
             <li>

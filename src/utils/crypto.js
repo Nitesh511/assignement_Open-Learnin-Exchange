@@ -18,12 +18,12 @@ export const decryptToken = (encryptedToken) => {
 // Save token securely to sessionStorage
 export const saveToken = (key, token) => {
   const encryptedToken = encryptToken(token);
-  sessionStorage.setItem(key, encryptedToken); // Use sessionStorage
+  localStorage.setItem(key, encryptedToken); // Use sessionStorage
 };
 
 // Retrieve token securely from sessionStorage
 export const getToken = (key) => {
-  const encryptedToken = sessionStorage.getItem(key); // Use sessionStorage
+  const encryptedToken = localStorage.getItem(key); // Use sessionStorage
   if (!encryptedToken) return null;
   return decryptToken(encryptedToken);
 };

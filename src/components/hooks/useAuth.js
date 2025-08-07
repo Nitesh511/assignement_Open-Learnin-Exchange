@@ -1,15 +1,14 @@
+import Swal from "sweetalert2";
 import { showErrorAlert, showSuccessAlert } from "../../utils/alertMessage";
-import { getToken, saveToken } from "../../utils/crypto";
+import { saveToken, removeToken } from "../../utils/crypto";
 import {
   useRegisterMutation,
   useLazyLoginQuery,
-  useLogoutMutation,
 } from "../redux/auth/authApiSlice";
 
 const ProceedToApi = () => {
   const [registerAPI] = useRegisterMutation();
   const [loginAPI] = useLazyLoginQuery();
-  const [LogoutAPI] = useLogoutMutation();
 
   const register = async (formData) => {
     try {
@@ -29,7 +28,6 @@ const ProceedToApi = () => {
   };
 
   const login = async (credentials) => {
-    debugger;
     const { email, password } = credentials;
 
     try {
@@ -38,6 +36,7 @@ const ProceedToApi = () => {
       if (result?.status === "fulfilled" || result?.data?.length === 1) {
         const user = result.data[0];
         saveToken("authToken", user.id);
+        localStorage.setItem("authRole", user.isAdmin);
 
         showSuccessAlert("Login SuccessFul");
 
@@ -65,31 +64,19 @@ const ProceedToApi = () => {
     }
   };
 
-  const logout = async () => {
+  const logout = () => {
     try {
-      const token = getToken("authToken");
-      if (!token) {
-        throw new Error("No token found");
-      }
+      // Remove tokens from storage
+      removeToken("authToken");
+      localStorage.removeItem("authRole");
 
-      const response = await LogoutAPI(token).unwrap();
-      const { statusCode, message } = response;
+      // Show success message
+      showSuccessAlert("You have been logged out successfully.");
 
-      if (statusCode === 200) {
-        showSuccessAlert(message);
-        removeToken("authToken");
-
-        return message;
-      } else {
-        showErrorAlert(message);
-        return message;
-      }
+      return "Logout successful";
     } catch (error) {
-      const errorMessage =
-        error?.data?.message || error.message || "An error occurred";
-
+      const errorMessage = error?.message || "An error occurred during logout.";
       showErrorAlert(errorMessage);
-
       return errorMessage;
     }
   };

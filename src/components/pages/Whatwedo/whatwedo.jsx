@@ -29,13 +29,13 @@ const WhatWeDo = () => {
   ];
 
   return (
-    <div className="py-10 px-0 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-6">What we do</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="md:py-10 px-0 max-w-7xl mx-auto mt-90 md:mt-0">
+      <h2 className=" text-center mb-6">What we do</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 cursor-pointer ">
         {services.map((service, index) => (
           <div
             key={index}
-            className="flex flex-col items-center p-6 bg-white rounded-lg shadow-lg"
+            className="flex flex-col items-center p-6 bg-white rounded-lg shadow-lg  transition-transform ease-in-out duration-300 transform hover:scale-105"
           >
             <div
               className="flex items-center justify-center mb-4"
