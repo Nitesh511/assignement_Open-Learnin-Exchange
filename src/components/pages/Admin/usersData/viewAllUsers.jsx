@@ -66,13 +66,13 @@ const ViewUsers = () => {
                 <td className="py-3 px-6">{user.company.name}</td>
                 <td className="py-3 px-6 space-x-2">
                   <button
-                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                    className="bg-blue-500 cursor-pointer text-white px-3 py-1 rounded hover:bg-blue-600"
                    onClick={() => navigate("/admin-dash/profile", { state: user })}
                   >
                     View
                   </button>
                   <button
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                    className="bg-red-500 text-white cursor-pointer px-3 py-1 rounded hover:bg-red-600"
                     onClick={() => handleDelete(user.id)}
                   >
                     Delete
@@ -99,11 +99,11 @@ const ViewUsers = () => {
           <span className="font-semibold">{totalPages}</span>
         </p>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 ">
           <button
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
             disabled={page === 1}
-            className="px-3 py-1 rounded bg-gray-300 hover:bg-gray-400 disabled:opacity-50"
+            className="px-3 cursor-pointer py-1 rounded bg-gray-300 hover:bg-gray-400 disabled:opacity-50"
           >
             Prev
           </button>
@@ -113,7 +113,7 @@ const ViewUsers = () => {
           <button
             onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={page === totalPages}
-            className="px-3 py-1 rounded bg-gray-300 hover:bg-gray-400 disabled:opacity-50"
+            className="px-3 cursor-pointer py-1 rounded bg-gray-300 hover:bg-gray-400 disabled:opacity-50"
           >
             Next
           </button>
